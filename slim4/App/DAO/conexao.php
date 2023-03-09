@@ -9,10 +9,10 @@ abstract class Conexao{
     public function __construct()
     {
         $host = 'localhost';
-        $port = '3307';
+        $port = '3306';
         $user = 'root';
         $pass = '';
-        $dbname = 'teste';
+        $dbname = 'petshop';
 
         $dsn = "mysql:host={$host};dbname={$dbname};port={$port}";
 

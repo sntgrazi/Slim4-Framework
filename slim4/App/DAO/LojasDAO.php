@@ -2,7 +2,7 @@
 
 namespace App\DAO;
 
-use App\Model\LojaModel;
+use App\Models\LojaModel;
 
 class LojasDAO extends Conexao{
 
