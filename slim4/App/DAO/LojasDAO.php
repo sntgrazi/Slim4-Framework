@@ -13,7 +13,7 @@ class LojasDAO extends Conexao{
 
 
     public function getAllLojas(): array{
-        $sql = 'SELECT * from lojas ';
+        $sql = 'SELECT * from lojas';
         $lojas = $this->pdo
                 ->query($sql)
                 ->fetchAll(\PDO::FETCH_ASSOC);
@@ -37,4 +37,28 @@ class LojasDAO extends Conexao{
             'endereco' => $loja->getEndereco()
         ]);
     }
+
+    public function updateLoja(LojaModel $loja): void {
+
+        $sql = 'UPDATE lojas SET nome = :nome, telefone = :telefone, endereco = :endereco WHERE id = :id';
+
+        $statement = $this->pdo
+        ->prepare($sql);
+
+        $statement->execute(['nome' => $loja->getNome(),
+                            'telefone' => $loja->getTelefone(),
+                            'endereco' => $loja->getEndereco(),
+                            'id' => $loja->getId()]);
+    } 
+
+    public function deleteLoja(LojaModel $loja): void 
+    {
+        $sql = 'DELETE FROM lojas WHERE id= :id';
+
+        $statement = $this->pdo
+                    ->prepare($sql);
+
+        $statement->execute(['id' => $loja->getId()]);
+    }
+
 }
