@@ -3,13 +3,17 @@
 use Slim\Factory\AppFactory;
 use App\Controllers\ProdutoController;
 use App\Controllers\LojaController;
+use Slim\Middleware\BodyParsingMiddleware;
 
 require "../vendor/autoload.php";
 
 
 $app = AppFactory::create();
 
+$app->addBodyParsingMiddleware();
+
 $app->AddErrorMiddleware(true,true,true);
+
 
 $app->get('/produto', ProdutoController::class . ':getProduto');
 $app->post('/produto', ProdutoController::class . ':insertProduto');
